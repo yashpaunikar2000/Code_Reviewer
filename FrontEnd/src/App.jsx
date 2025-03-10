@@ -20,7 +20,7 @@ function App() {
   }, []);
 
   async function reviwecode(){
-    const response= await axios.post('http://localhost:8080/ai/get-review',{ code })
+    const response= await axios.post('https://code-reviewer-backend-sigma.vercel.app/ai/get-review',{ code })
    setreview(response.data)
   }
 
