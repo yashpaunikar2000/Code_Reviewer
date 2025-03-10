@@ -1,0 +1,131 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+main .left,
+main .right {
+  height: 100%;
+  flex-basis: 50%;
+  border-radius: 10px;
+}
+
+main .left {
+  background-color: #00000099;
+  position: relative;
+}
+.left .code, 
+.code pre,
+.code pre code {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  border-radius: 0.7rem;
+}
+main .left .review{
+position: absolute;
+bottom: 1rem;
+right: 1rem;
+background-color: rgba(48, 229, 229, 0.945);
+padding:4px 15px;
+border-radius: 15px;
+color: black;
+font-family:cursive;
+cursor: pointer;
+}
+
+
+.right {
+  background-color: #446990bc; 
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0; /* Remove top margin issue */
+  background-color: #fff; /* White background */
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.left, .right {
+  height: 100%;
+  flex-basis: 50%;
+  border-radius: 10px;
+}
+
+.left {
+  background-color: #000000da;
+  position: relative;
+}
+main .left .review{
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: rgba(13, 183, 183, 0.851);
+  padding:4px 15px;
+  border-radius: 15px;
+  color: black;
+  font-family:cursive;
+  cursor: pointer;
+  }
+
+/* ✅ Reset Prism.js Code Styling */
+pre {
+  background: none !important;
+  /* border-radius: 15px; */
+  overflow-x: auto;
+}
+
+code {
+  color: inherit !important; /* Default text color */
+  font-family: monospace;
+  font-size: 1rem;
+}
+main .right {
+  background-color: rgba(96, 95, 95, 0.768); 
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  overflow: auto;
+}
+/* CodeMirror ka unwanted border, outline aur shadow hatana */
+.cm-theme {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+
+
+
