@@ -1,16 +1,25 @@
-const express=require('express');
-const aiRoutes = require('./Routes/ai.routes')
-const cors=require('cors')
-const app=express()
+const express = require('express');
+const aiRoutes = require('./Routes/ai.routes');
+const cors = require('cors');
+
+const app = express();
+
+// Fix CORS issue
 app.use(cors({
-    origin: 'https://code-reviewer-frontend-three.vercel.app', // Specific frontend origin
-    methods: 'GET,POST,PUT,DELETE',
+    origin: 'https://code-reviewer-frontend-three.vercel.app', // Allow frontend origin
+    methods: 'GET,POST,PUT,DELETE,OPTIONS', // Added OPTIONS method
     allowedHeaders: 'Content-Type,Authorization'
-  }));
-app.use(express.json())
+}));
+
+// Handle preflight requests
+app.options('*', cors());
+
+app.use(express.json());
+
 app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-app.use('/ai',aiRoutes)
+    res.send('Hello World!');
+});
+
+app.use('/ai', aiRoutes);
 
 module.exports = app;

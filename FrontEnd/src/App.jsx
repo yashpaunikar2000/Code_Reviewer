@@ -4,9 +4,7 @@ import "prismjs/themes/prism-tomorrow.css";
 import Prism from "prismjs";
 import axios from "axios";
 import Markdown from "react-markdown";
-import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
-
 import { EditorView } from "@codemirror/view";
 import { javascript } from "@codemirror/lang-javascript";
 import { oneDark } from "@codemirror/theme-one-dark";
