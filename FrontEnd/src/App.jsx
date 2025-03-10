@@ -12,14 +12,26 @@ import CodeMirror from "@uiw/react-codemirror";
 
 function App() {
   const [code, setCode] = useState(`function sum() { return 1 + 1; }`);
-  const [review, setreview] = useState(``)
+  const [review, setReview] = useState("");
+  const [error, setError] = useState(""); // Store error messages
+
   useEffect(() => {
     Prism.highlightAll();
   }, []);
 
-  async function reviwecode(){
-    const response= await axios.post('https://code-reviewer-backend-sigma.vercel.app/ai/get-review',{ code })
-   setreview(response.data)
+  async function reviewCode() {
+    try {
+      setError(""); // Clear previous errors
+      const response = await axios.post(
+        "https://code-reviewer-backend-sigma.vercel.app/ai/get-review",
+        { code },
+        { headers: { "Content-Type": "application/json" } } // Ensure correct headers
+      );
+      setReview(response.data);
+    } catch (err) {
+      console.error("Error fetching review:", err);
+      setError("Failed to fetch review. Check the console for details.");
+    }
   }
 
   return (
@@ -33,8 +45,8 @@ function App() {
               theme={oneDark}
               onChange={(value) => setCode(value)}
               basicSetup={{
-                lineNumbers: false, // Removes the "1" on the side
-                highlightActiveLineGutter: false, // Removes highlight from the left side
+                lineNumbers: false,
+                highlightActiveLineGutter: false,
               }}
               style={{
                 fontFamily: '"Fira Code", "Fira Mono", monospace',
@@ -53,13 +65,13 @@ function App() {
             />
           </div>
 
-          <div 
-          onClick={reviwecode}
-          className="review">Review</div>
+          <div onClick={reviewCode} className="review">
+            Review
+          </div>
         </div>
 
         <div className="right">
-          <Markdown>{review}</Markdown>
+          {error ? <p style={{ color: "red" }}>{error}</p> : <Markdown>{review}</Markdown>}
         </div>
       </main>
     </>
@@ -67,17 +79,3 @@ function App() {
 }
 
 export default App;
-// backend server (default express server) cannot share your resources with anyone 
-// means don't even share resources with frontend 
-// if you want server to share resources with backend then
-// you have to setup an packages. that package name is "CORS"
-
-
-// to get a review in a good manner we can use 
-// package "markdown"
-
-
-// rehype-highlight ek rehype plugin hai jo Markdown files ke andar code 
-// blocks ka syntax highlight karne ke liye use hota hai. Yeh internally 
-// highlight.js ka use karta hai taaki code ko alag-alag colors aur
-//  styles mein dikhaya ja sake.
