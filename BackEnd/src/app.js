@@ -6,9 +6,10 @@ const app = express();
 
 // Fix CORS issue
 app.use(cors({
-    origin: 'https://code-reviewer-frontend-three.vercel.app', // Allow frontend origin
-    methods: 'GET,POST,PUT,DELETE,OPTIONS', // Added OPTIONS method
-    allowedHeaders: 'Content-Type,Authorization'
+    origin: ['http://localhost:5175'], // Allow both local and deployed frontend
+    methods: 'GET,POST,PUT,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type,Authorization',
+    credentials: true // Allow credentials
 }));
 
 // Handle preflight requests
