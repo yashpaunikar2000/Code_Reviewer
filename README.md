@@ -1,1 +1,1 @@
-![Image](URL "./output.png")
+![Output](./output.png)
